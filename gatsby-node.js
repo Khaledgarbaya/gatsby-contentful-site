@@ -7,7 +7,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
     resolve(
       graphql(`
         {
-          allContentfulBlog (limit:100) {
+          allContentfulBlog (limit: 100) {
             edges {
               node {
                 id
