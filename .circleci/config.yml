@@ -37,14 +37,3 @@ jobs:
       - run: 
           name: deploy to production
           command: aws s3 sync public s3://preview.khaledgarbaya.net --delete --cache-control "max-age=3153600"
-      - run:
-          name: Enable cloudfront feature
-          command: aws configure set preview.cloudfront true
-      - run:
-          name: Enable cloudfront feature
-          command: aws configure set preview.create-invalidation true 
-      - run: 
-          name: cloudfron Invalidation
-          # preventing the aws cli from logging your distribution id after invalidation is done
-          command: aws cloudfront create-invalidation --cli-input-json "{\"DistributionId\":\"$CLOUD_FRONT_INSTANCE\",\"InvalidationBatch\":{\"Paths\":{\"Quantity\":1,\"Items\":[\"/*\"]},\"CallerReference\":\"$(date +%s)\"}}" &> /dev/null
-
